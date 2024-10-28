@@ -1,8 +1,9 @@
 import './App.css';
 import Game from './Game';
+
 function App() {
   return (
-    <div>
+    <div className="container">
       <Game />
     </div>
   );

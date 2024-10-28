@@ -1,19 +1,31 @@
 import { useState, useEffect } from 'react';
+import rockImg from './images/rock.png';
+import paperImg from './images/paper.png';
+import scissorsImg from './images/scissors.png';
 
 const ComputerChoice = ({ onComputerChoose }) => {
-  const choices = ['rock', 'paper', 'scissors'];
-  const [computerChoice, setComputerChoice] = useState();
+  const choices = [
+    { name: 'rock', image: rockImg },
+    { name: 'paper', image: paperImg },
+    { name: 'scissors', image: scissorsImg },
+  ];
+  const [computerChoice, setComputerChoice] = useState(null);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * choices.length);
-    const choice = choices[randomIndex];
-    setComputerChoice(choice);
-    onComputerChoose(choice);
+    const chosen = choices[randomIndex];
+    setComputerChoice(chosen);
+    onComputerChoose(chosen.name);
   }, [onComputerChoose]);
 
   return (
-    <div>
-      <p>Computer chose: {computerChoice}</p>
+    <div id="ComputerContainer">
+      <p>Computer chose:</p>
+      {computerChoice ? (
+        <img src={computerChoice.image} alt={computerChoice.name} />
+      ) : (
+        <p>Choosing...</p>
+      )}
     </div>
   );
 };

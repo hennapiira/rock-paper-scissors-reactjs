@@ -1,22 +1,30 @@
 import { useState } from 'react';
+import rockImg from './images/rock.png';
+import paperImg from './images/paper.png';
+import scissorsImg from './images/scissors.png';
 
 const UserChoice = ({ onChoose }) => {
-  const choices = ['rock', 'paper', 'scissors'];
-  const [choice, setChoice] = useState();
+  const choices = [
+    { name: 'rock', image: rockImg },
+    { name: 'paper', image: paperImg },
+    { name: 'scissors', image: scissorsImg },
+  ];
 
-  const handleChoice = (choice) => {
-    setChoice(choice);
-    onChoose(choice);
+  const handleChoice = (chosen) => {
+    onChoose(chosen.name);
   };
 
   return (
-    <div>
+    <div id="choiceContainer">
       {choices.map((choice) => (
-        <button key={choice} onClick={() => handleChoice(choice)}>
-          {choice}
+        <button
+          key={choice.name}
+          onClick={() => handleChoice(choice)}
+          className="choiceButton"
+        >
+          <img src={choice.image} alt={choice.name} />
         </button>
       ))}
-      <p>You choose {choice}</p>
     </div>
   );
 };
