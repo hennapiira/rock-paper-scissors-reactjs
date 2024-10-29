@@ -1,26 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import UserChoice from './UserChoice';
 import ComputerChoice from './ComputerChoice';
+import Result from './Result';
 
 const Game = () => {
-  const [result, setResult] = useState('');
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [showComputerChoice, setShowComputerChoice] = useState(false);
-
-  const calculateResult = () => {
-    if (userChoice === computerChoice) {
-      setResult("It's a draw!");
-    } else if (
-      (userChoice === 'rock' && computerChoice === 'scissors') ||
-      (userChoice === 'scissors' && computerChoice === 'paper') ||
-      (userChoice === 'paper' && computerChoice === 'rock')
-    ) {
-      setResult('You win!');
-    } else {
-      setResult('You lose!');
-    }
-  };
+  const [showResult, setShowResult] = useState(false);
 
   const handleUserChoice = (choice) => {
     setUserChoice(choice);
@@ -29,16 +16,33 @@ const Game = () => {
 
   const handleComputerChoice = (choice) => {
     setComputerChoice(choice);
-    calculateResult();
+    setShowResult(true);
+  };
+
+  const handlePlayAgain = () => {
+    setUserChoice(null);
+    setComputerChoice(null);
+    setShowComputerChoice(false);
+    setShowResult(false);
   };
 
   return (
     <div>
-      {showComputerChoice && (
+      {showComputerChoice ? (
         <ComputerChoice onComputerChoose={handleComputerChoice} />
+      ) : (
+        <h2 className="pickOne">Pick one</h2>
       )}
-      <UserChoice onChoose={handleUserChoice} />
-      <p>Result: {result}</p>
+      <UserChoice onChoose={handleUserChoice} selectedChoice={userChoice} />
+      {showResult ? (
+        <Result
+          userChoice={userChoice}
+          computerChoice={computerChoice}
+          playAgain={handlePlayAgain}
+        />
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };

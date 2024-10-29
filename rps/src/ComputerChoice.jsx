@@ -4,12 +4,12 @@ import paperImg from './images/paper.png';
 import scissorsImg from './images/scissors.png';
 
 const ComputerChoice = ({ onComputerChoose }) => {
+  const [computerChoice, setComputerChoice] = useState(null);
   const choices = [
     { name: 'rock', image: rockImg },
     { name: 'paper', image: paperImg },
     { name: 'scissors', image: scissorsImg },
   ];
-  const [computerChoice, setComputerChoice] = useState(null);
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -19,12 +19,11 @@ const ComputerChoice = ({ onComputerChoose }) => {
   }, [onComputerChoose]);
 
   return (
-    <div id="ComputerContainer">
-      <p>Computer chose:</p>
+    <div className="computer-container">
       {computerChoice ? (
         <img src={computerChoice.image} alt={computerChoice.name} />
       ) : (
-        <p>Choosing...</p>
+        <h2>choosing...</h2>
       )}
     </div>
   );
