@@ -1,8 +1,8 @@
 const Header = () => {
   return (
-    <div>
+    <header>
       <h1>Rock Paper Scissors</h1>
-    </div>
+    </header>
   );
 };
 
