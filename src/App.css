@@ -4,6 +4,7 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -19,22 +20,23 @@ body {
 .sliding-background {
   background-image: url('./images/cloudbackground.png');
   background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
   height: 2304px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   animation: slide 60s linear infinite;
 }
 
 .content-container {
-  height: 35em;
-  width: 35em;
+  height: 560px;
+  width: 560px;
   background-color: rgba(255, 255, 255, 0.8);
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
   color: #ffffff;
   border-radius: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -77,8 +79,8 @@ h2 {
   -webkit-box-shadow: 5px 6px 15px 5px rgba(0, 0, 0, 0.56);
   box-shadow: 5px 6px 15px 5px rgba(0, 0, 0, 0.3);
   background: linear-gradient(to bottom, #ffffff 5%, #c9c9c9 100%);
-  height: 6em;
-  width: 6em;
+  width: 95px;
+  height: auto;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -98,29 +100,27 @@ h2 {
 }
 
 .choiceButton img {
-  width: 70px;
-  height: 70px;
+  width: 120%;
+  height: auto;
+  object-fit: contain;
 }
 
 .computer-container {
-  display: flex;
-  justify-content: center;
   position: relative;
-  top: 0px;
+  top: 0%;
+  left: 43%;
 }
 
 .computer-container img {
-  width: 70px;
-  height: 70px;
+  width: 15%;
+  height: 20%;
 }
 
 .result-container {
-  display: flex;
-  justify-content: center;
   flex-direction: column;
   position: absolute;
-  top: 400px;
-  left: 130px;
+  top: 70%;
+  left: 24%;
 }
 
 .result-draw {
@@ -138,17 +138,17 @@ h2 {
 .playAgainButton {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 300px;
   height: 60px;
   border-radius: 40px;
   background-color: rgba(255, 255, 255, 0.8);
   color: #8a8a8a;
   font-family: 'DynaPuff', serif;
-  font-size: 20px;
+  font-size: 1.25em;
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 .playAgainButton:hover {
   background-color: rgba(255, 255, 255, 0.1);
   color: #00b4d8;
@@ -169,7 +169,7 @@ h2 {
 
 @media (max-width: 768px) {
   .content-container {
-    height: 80vh;
+    height: 90vh;
     width: 73vw;
   }
 
@@ -177,52 +177,50 @@ h2 {
     font-size: 2.8em;
   }
 
-  .result-container {
-    top: 350px;
-    left: 100px;
+  .choice-container {
+    gap: 20px;
   }
-
-  .choiceButton {
-    width: 5em;
-    height: 5em;
-  }
-
   .playAgainButton {
-    height: 40px;
-    width: 200px;
+    width: 35vw;
   }
 }
 
 @media (max-width: 480px) {
+  .content-container {
+    height: 80vh;
+    width: 80vw;
+  }
+
   h1 {
-    font-size: 2.3em;
+    font-size: clamp(1.5em, 5vw, 2em);
+  }
+
+  h2,
+  .pickOne {
+    font-size: clamp(1em, 4vw, 1.5em);
   }
 
   .choice-container {
-    gap: 20px;
-  }
-
-  .result-container {
-    top: 350px;
-    left: 100px;
+    gap: 10px;
   }
 
   .choiceButton {
-    width: 4em;
-    height: 4em;
+    width: 60px;
+    height: 60px;
   }
 
   .choiceButton img {
-    width: 3em;
-    height: 3em;
-  }
-
-  .computer-container img {
-    width: 3em;
-    height: 3em;
+    width: 150%;
+    height: auto;
   }
 
   .result-container {
-    left: 80px;
+    top: 75%;
+    left: 25%;
+  }
+
+  .playAgainButton {
+    height: 40px;
+    font-size: clamp(0.8em, 2vw, 1em);
   }
 }
