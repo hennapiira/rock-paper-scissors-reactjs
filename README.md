@@ -39,12 +39,6 @@ npm i
 npm run dev
 ```
 
-- To create **a production build** of the application, run:
-
-```
-npm run build
-```
-
 3. Once the development server is running, you can access the application by navigating to:
 
 ```
